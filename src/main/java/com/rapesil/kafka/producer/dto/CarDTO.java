@@ -1,4 +1,4 @@
-package com.live.kafka.producer.controller;
+package com.rapesil.kafka.producer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,8 @@
-package com.live.kafka.producer.controller;
+package com.rapesil.kafka.producer.controller;
 
-import com.live.kafka.producer.producer.CarProducer;
+import com.rapesil.kafka.producer.dto.CarDTO;
+import com.rapesil.kafka.producer.producer.CarProducer;
+import com.rapesil.kafka.producer.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +18,16 @@ import java.util.UUID;
 public class CarController {
 
     @Autowired
-    private CarProducer carProducer;
+    private ProducerService producerService;
 
     @PostMapping
     public ResponseEntity<CarDTO> create(@RequestBody CarDTO carDTO){
-        CarDTO car = CarDTO.builder().id(UUID.randomUUID().toString()).color(carDTO.getColor()).model(carDTO.getModel()).build();
-        carProducer.send(car);
-        return ResponseEntity.status(HttpStatus.CREATED).body(car);
+        CarDTO car = CarDTO.builder()
+                .id(UUID.randomUUID().toString())
+                .color(carDTO.getColor())
+                .model(carDTO.getModel()).build();
+        ResponseEntity<CarDTO> carDTOResponseEntity = producerService.sendMessage(car);
+        return carDTOResponseEntity;
     }
 
 }

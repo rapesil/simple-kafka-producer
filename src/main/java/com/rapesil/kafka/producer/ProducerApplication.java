@@ -1,4 +1,4 @@
-package com.live.kafka.producer;
+package com.rapesil.kafka.producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

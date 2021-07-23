@@ -1,6 +1,6 @@
-package com.live.kafka.producer.producer;
+package com.rapesil.kafka.producer.producer;
 
-import com.live.kafka.producer.controller.CarDTO;
+import com.rapesil.kafka.producer.dto.CarDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

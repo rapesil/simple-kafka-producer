@@ -1,6 +1,6 @@
-package com.live.kafka.producer.config;
+package com.rapesil.kafka.producer.config;
 
-import com.live.kafka.producer.controller.CarDTO;
+import com.rapesil.kafka.producer.dto.CarDTO;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

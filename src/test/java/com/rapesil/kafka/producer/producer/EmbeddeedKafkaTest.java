@@ -1,7 +1,7 @@
-package com.live.kafka.producer;
+package com.rapesil.kafka.producer.producer;
 
-import com.live.kafka.producer.controller.CarDTO;
-import com.live.kafka.producer.producer.CarProducer;
+import com.rapesil.kafka.producer.dto.CarDTO;
+import com.rapesil.kafka.producer.producer.CarProducer;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
@@ -37,18 +36,20 @@ public class EmbeddeedKafkaTest {
     @Autowired
     private CarProducer producer;
 
-    @MockBean
-    private ConsumerTest consumerTest;
-
     @Value("${test.topic}")
     private String topic;
 
     @Test
     public void givenEmbeddedKafkaBroker_whenSendingToCarProducer_thenMessageReceived() throws Exception {
         //Create a simple consumer
-        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps("baeldung", "false", embeddedKafkaBroker);
+        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps(
+                "baeldung", "false", embeddedKafkaBroker);
         consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        ConsumerFactory cf = new DefaultKafkaConsumerFactory<String, CarDTO>(consumerProps, new StringDeserializer(), new JsonDeserializer<>(CarDTO.class, false));
+
+        ConsumerFactory cf = new DefaultKafkaConsumerFactory<String, CarDTO>(
+                consumerProps, new StringDeserializer(),
+                new JsonDeserializer<>(CarDTO.class,
+                        false));
         Consumer<String, CarDTO> consumerServiceTest = cf.createConsumer();
 
         // Make the consumer can read from embedded kafka broker and topic

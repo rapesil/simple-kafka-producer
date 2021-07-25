@@ -1,7 +1,6 @@
 package com.rapesil.kafka.producer.producer;
 
 import com.rapesil.kafka.producer.dto.CarDTO;
-import com.rapesil.kafka.producer.producer.CarProducer;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

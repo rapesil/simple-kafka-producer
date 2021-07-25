@@ -7,3 +7,5 @@ mvnw
 mvnw.cmd
 producer.iml
 target/
+.DS_Store
+*.DS_Store
